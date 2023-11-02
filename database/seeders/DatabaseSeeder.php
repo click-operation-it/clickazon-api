@@ -6,7 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RolesTableSeeder;
 use Database\Seeders\PermissionsTableSeeder;
-use Database\Seeders\UsersTableSeeder;
+use SbscPackage\Ecommerce\Database\Seeders\DatabaseSeeder as EcommerceDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,9 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            PermissionsTableSeeder::class,
-            RolesTableSeeder::class,
-            UsersTableSeeder::class,
+            EcommerceDatabaseSeeder::class,
         ]);
     }
 }

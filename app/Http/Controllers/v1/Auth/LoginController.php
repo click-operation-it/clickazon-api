@@ -19,8 +19,6 @@ class LoginController extends Controller
     {
         $validateRequest = $this->validateRequest($request);
 
-        $validateRequest = $this->validateRequest($request);
-
         if($validateRequest->fails()){
             return JsonResponser::send(true, $validateRequest->errors()->first(), $validateRequest->errors()->all(), 400);
         }

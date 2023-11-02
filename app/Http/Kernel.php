@@ -64,5 +64,9 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'ecommerceadmin' =>  \SbscPackage\Ecommerce\Http\Middleware\EcommerceAdminMiddleware::class,
+        'ecommercesuperadmin' =>  \SbscPackage\Ecommerce\Http\Middleware\EcommerceSuperAdminMiddleware::class,
+        'ecommercecustomer' =>  \SbscPackage\Ecommerce\Http\Middleware\EcommerceCustomerMiddleware::class,
+        'ecommercevendor' =>  \SbscPackage\Ecommerce\Http\Middleware\EcommerceVendorMiddleware::class,
     ];
 }

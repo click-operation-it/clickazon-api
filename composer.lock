@@ -7845,12 +7845,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:sbscphp/ecommerce.git",
-                "reference": "314d25bb42f62f5f7b273d4601e4efad96f01156"
+                "reference": "bcb986083b4a3a62f2cfedd7e9b4e06a7935dc90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sbscphp/ecommerce/zipball/314d25bb42f62f5f7b273d4601e4efad96f01156",
-                "reference": "314d25bb42f62f5f7b273d4601e4efad96f01156",
+                "url": "https://api.github.com/repos/sbscphp/ecommerce/zipball/bcb986083b4a3a62f2cfedd7e9b4e06a7935dc90",
+                "reference": "bcb986083b4a3a62f2cfedd7e9b4e06a7935dc90",
                 "shasum": ""
             },
             "require": {
@@ -7883,7 +7883,7 @@
                 "source": "https://github.com/sbscphp/ecommerce/tree/clickazon",
                 "issues": "https://github.com/sbscphp/ecommerce/issues"
             },
-            "time": "2023-10-26T13:03:50+00:00"
+            "time": "2023-11-02T11:33:40+00:00"
         },
         {
             "name": "sebastian/cli-parser",
