@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\v1\Auth\LoginController;
+use App\Http\Controllers\v1\Auth\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,8 +36,8 @@ Route::group(["prefix" => "v1"], function () {
         // Route::post('/email/otpverification', [VerificationController::class, 'verifyOTP']);
         // Route::get('/twofa', [VerificationController::class, 'update2fa']);
         // Route::post('/twofa/update', [VerificationController::class, 'enable2fa']);
-        // Route::post('recover', [ForgotPasswordController::class, 'recover']);
-        // Route::post('reset/password', [ForgotPasswordController::class, 'reset']);
+        Route::post('recover', [ForgotPasswordController::class, 'recover']);
+        Route::post('reset/password', [ForgotPasswordController::class, 'reset']);
         // Route::post('/email/resend-verification', [RegisterController::class, 'resendCode']);
         Route::post('login', [LoginController::class, 'login']);
         Route::get('logout', [LoginController::class, 'logout']);
