@@ -98,4 +98,12 @@ class User extends Authenticatable implements JWTSubject
         }
         return null;  
     }
+
+    public function userecommercevendor()
+    {
+        if(class_exists("\SbscPackage\Ecommerce\Models\EcommerceVendor")){
+            return $this->hasOne(\SbscPackage\Ecommerce\Models\EcommerceVendor::class);
+        }
+        return null;  
+    }
 }

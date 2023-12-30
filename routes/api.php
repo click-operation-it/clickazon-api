@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\v1\Auth\LoginController;
 use App\Http\Controllers\v1\Auth\ForgotPasswordController;
+use App\Http\Controllers\v1\Auth\VerificationController;
+use App\Http\Controllers\v1\Auth\RegisterController;
+use App\Http\Controllers\v1\Profile\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,16 +34,23 @@ Route::group(["prefix" => "v1"], function () {
 
     //Authentication Route
     Route::group(["prefix" => "auth"], function () {
-        // Route::post('signup', [RegisterController::class, 'store']);
-        // Route::post('ecommerce/signup', [RegisterController::class, 'ecommerceCustomerSignup']);
-        // Route::post('/email/otpverification', [VerificationController::class, 'verifyOTP']);
-        // Route::get('/twofa', [VerificationController::class, 'update2fa']);
-        // Route::post('/twofa/update', [VerificationController::class, 'enable2fa']);
+        Route::post('signup', [RegisterController::class, 'store']);
+        Route::post('ecommerce/signup', [RegisterController::class, 'ecommerceCustomerSignup']);
+        Route::post('ecommerce/validate/email', [LoginController::class, 'validateEcommerceLoginEmail']);
+        Route::post('/email/otpverification', [VerificationController::class, 'verifyOTP']);
+        Route::get('/twofa', [VerificationController::class, 'update2fa']);
+        Route::post('/twofa/update', [VerificationController::class, 'enable2fa']);
         Route::post('recover', [ForgotPasswordController::class, 'recover']);
         Route::post('reset/password', [ForgotPasswordController::class, 'reset']);
-        // Route::post('/email/resend-verification', [RegisterController::class, 'resendCode']);
+        Route::post('password/create', [ForgotPasswordController::class, 'createPassword']);
+        Route::post('/email/resend-verification', [RegisterController::class, 'resendCode']);
         Route::post('login', [LoginController::class, 'login']);
         Route::get('logout', [LoginController::class, 'logout']);
+    });
+    
+    Route::group(['prefix' => 'profile', "namespace" => "v1\Profile", 'middleware' => ["auth:api"]], function () {
+        Route::post('/', [ProfileController::class, 'updateProfile']);
+
     });
 
 });

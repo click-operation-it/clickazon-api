@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('phoneno')->unique();
             $table->string('pin')->nullable();
+            $table->string('country')->nullable();
+            $table->string('state')->nullable();
+            $table->string('city')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
