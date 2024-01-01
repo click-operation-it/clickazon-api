@@ -38,6 +38,7 @@ Route::group(["prefix" => "v1"], function () {
         Route::post('ecommerce/signup', [RegisterController::class, 'ecommerceCustomerSignup']);
         Route::post('ecommerce/validate/email', [LoginController::class, 'validateEcommerceLoginEmail']);
         Route::post('/email/otpverification', [VerificationController::class, 'verifyOTP']);
+        Route::get('/email-verification/{token}', [VerificationController::class, 'verifyUser']);
         Route::get('/twofa', [VerificationController::class, 'update2fa']);
         Route::post('/twofa/update', [VerificationController::class, 'enable2fa']);
         Route::post('recover', [ForgotPasswordController::class, 'recover']);

@@ -41,7 +41,7 @@ class PendingUserNotification extends Notification
                     ->greeting('Hello '.$data['firstname'].'!')
                     ->line('Thank you for creating an account on '. env('APP_NAME').'.')
                     ->line('To complete the verification process, please click on the link below.')
-                    ->action('Verify Email', url('/api/v1/create-password/token='.$data['token'].'&email='. $data['email']))
+                    ->action('Verify Email', url(env('CLIENT_URL').'/auth/verify-email/token='.$data['token'].'&email='. $data['email']))
                     ->line('If the above link does not work, please copy and paste the following URL into your browser');
     }
 
