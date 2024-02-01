@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PasswordUpdateNotification extends Notification
+class EmailVerificationNotification extends Notification
 {
     use Queueable;
 
@@ -37,12 +37,19 @@ class PasswordUpdateNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         $data = $this->data;
+        $data = $this->data;
+        $url = env('CUSTOMER_BASE_URL') . '#/auth/verify-email/' . $data['verification_code'] . '?email=' . $data['email'];
         return (new MailMessage)
-                ->greeting('Hello '.$data['name'].'!')
-                ->subject("Update Password Notification!")
-                ->line("Your password on " . env('APP_NAME') ." has been successfully updated. Your account security is important to us, and we appreciate your proactive efforts in keeping your password secure.")
-        
-                ->line('If you did not initiate this password change on your '. env('APP_NAME') . ' account, please contact our support team immediately to investigate any potential unauthorized access to your account.');
+                ->greeting('Hello ' . $data['firstname'] . '!')
+                ->line('Thank you for registering with ' . env('APP_NAME') . '.')
+                ->line('To verify your email address, please click on the button below:')
+                ->action('Verify Email', $url)
+                ->line('If you did not create an account with ' . env('APP_NAME') . ', please disregard this email.')
+                ->line('We are excited to have you as a part of our community!')
+                ->line('By verifying your email, you gain access to exclusive features and updates.')
+                ->line('If you have any questions or need assistance, feel free to reach out to our support team.')
+                ->line('Thank you again for choosing ' . env('APP_NAME') . '.');
+
     }
 
     /**

@@ -42,7 +42,7 @@ class PasswordResetNotification extends Notification
                 ->subject("Reset Password Notification!")
                 ->line("You are receiving this email because we received a password reset request for your ". env('APP_NAME') ." account on ". \Carbon\Carbon::now())
                 ->line('Click on the button below to reset your password.')
-                ->action('Reset Password', url('/auth/reset-password/'.$data['verification_code'].'?email='. $data['email']))
+                ->action('Reset Password', env('CUSTOMER_BASE_URL').'#/auth/reset-password/' .$data['verification_code'].'&?email='. $data['email'])
                 ->line('If you did not request for a password reset on your '. env('APP_NAME') .' account, please disregard this email.');
     }
 

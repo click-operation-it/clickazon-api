@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Hash, Mail;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use Notification;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 
 class ForgotPasswordController extends Controller

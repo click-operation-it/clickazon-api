@@ -32,7 +32,12 @@ class VerificationController extends Controller
                 return JsonResponser::send(true, "Account already verified.", null, 400);
             }
 
-            $user->update(['is_verified' => 1]);
+            $user->update([
+                'is_verified' => 1,
+                'can_login' => 1,
+                'is_active' => 1,
+                'is_completed' => 1,
+            ]);
 
             $token = JWTAuth::fromUser($user);
 

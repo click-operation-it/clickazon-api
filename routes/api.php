@@ -50,7 +50,9 @@ Route::group(["prefix" => "v1"], function () {
     });
     
     Route::group(['prefix' => 'profile', "namespace" => "v1\Profile", 'middleware' => ["auth:api"]], function () {
-        Route::post('/', [ProfileController::class, 'updateProfile']);
+        Route::get('/', [ProfileController::class, 'profile']);
+        Route::post('/update', [ProfileController::class, 'updateProfile']);
+        Route::post('/update-password', [ProfileController::class, 'updatePassword']);
 
     });
 
