@@ -8,6 +8,7 @@ use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
 use App\Responser\JsonResponser;
 use App\Helpers\ProcessAuditLog;
+use App\Mail\VerifyEmail;
 use App\Notifications\EmailVerificationNotification;
 use SbscPackage\Ecommerce\Services\Paystack;
 use Illuminate\Support\Facades\Hash;
@@ -174,7 +175,9 @@ class RegisterController extends Controller
                 $user->attachRole($userRole->id);
             }
 
-            Notification::route('mail', $request->email)->notify(new EmailVerificationNotification($data));
+            // Notification::route('mail', $request->email)->notify(new EmailVerificationNotification($data));
+
+            Mail::to($request->email)->send(new VerifyEmail($data));
 
             $sanctumToken = $user->createToken('tokens')->plainTextToken;
 
@@ -182,6 +185,7 @@ class RegisterController extends Controller
                 'causer_id' => $user->id,
                 'action_id' => $user->id,
                 'action_type' => "Models\User",
+                'action' => 'Create',
                 'log_name' => "Account created successfully",
                 'description' => "{$user->firstname} {$user->lastname} account created successfully",
             ];
