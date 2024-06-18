@@ -7,10 +7,12 @@ use App\Mail\ResetPassword;
 use App\Mail\UpdatePasswordEmail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\ResetPasswordEmail;
 use App\Notifications\PasswordResetNotification;
 use App\Notifications\PasswordUpdateNotification;
 use Illuminate\Support\Facades\Validator;
-use Hash, Mail;
+use Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Notification;
@@ -56,6 +58,7 @@ class ForgotPasswordController extends Controller
                 'subject' => "Reset Password Notification",
             ];
             Notification::route('mail', $user->email)->notify(new PasswordResetNotification($data));
+            Mail::to($request->email)->send(new ResetPasswordEmail($data));
 
         } catch (\Exception $e) {
             //Return with error
